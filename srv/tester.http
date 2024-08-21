@@ -1,0 +1,114 @@
+### get the service document
+http://localhost:4004/odata/v4/EmployeeService
+
+### get the service metadata document
+http://localhost:4004/odata/v4/EmployeeService?$metadata
+
+### get all the employee data.
+http://localhost:4004/odata/v4/EmployeeService/EmployeeSet
+
+### GET SINGLE EMPLOYEE
+http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C199E7FB
+
+### get all the employees whose name starts with 's'.
+http://localhost:4004/odata/v4/EmployeeService/EmployeeSet?$filter=startswith(nameFirst,'S')
+
+### get the top 2 employee , use orderby salaryAmount
+http://localhost:4004/odata/v4/EmployeeService/EmployeeSet?$top=2&$orderby=salaryAmount
+
+### CREATE AN EMPLOYEE with salary <50000 & currency code USD
+POST http://localhost:4004/odata/v4/EmployeeService/EmployeeSet
+Content-Type: application/json
+
+{
+
+      "nameFirst": "Sravan",
+      "nameMiddle": null,
+      "nameLast": "Malyala",
+      "nameInitials": null,
+      "Gender": "M",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "james.smith@itelo.info",
+      "loginName": "SRAVANM",
+      "Currency_code": "USD",
+      "salaryAmount": 38761,
+      "accountNumber": "456789090",
+      "bankId": "99999890",
+      "bankName": "Deutsches Geldinstitut"
+}
+
+### CREATE AN EMPLOYEE with salary >50000 & currency code USD
+POST http://localhost:4004/odata/v4/EmployeeService/EmployeeSet
+Content-Type: application/json
+
+{
+
+      "nameFirst": "Vineetha",
+      "nameMiddle": null,
+      "nameLast": "Malyala",
+      "nameInitials": null,
+      "Gender": "F",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "james.smith@itelo.info",
+      "loginName": "Vineetham",
+      "Currency_code": "USD",
+      "salaryAmount": 100000,
+      "accountNumber": "456789091",
+      "bankId": "99999891",
+      "bankName": "Deutsches Geldinstitut"
+}
+
+
+### CREATE AN EMPLOYEE with salary <50000 & currency code EUR
+POST http://localhost:4004/odata/v4/EmployeeService/EmployeeSet
+Content-Type: application/json
+
+{
+
+      "nameFirst": "Praneeth",
+      "nameMiddle": null,
+      "nameLast": "Malyala",
+      "nameInitials": null,
+      "Gender": "M",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "james.smith@itelo.info",
+      "loginName": "PraneethM",
+      "Currency_code": "INR",
+      "salaryAmount": 38761,
+      "accountNumber": "456789092",
+      "bankId": "99999892",
+      "bankName": "Deutsches Geldinstitut"
+}
+
+
+### update an employee by keeping nameFirst and loginname intact
+
+PATCH http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C199E7FB
+Content-Type: application/json
+ 
+{
+    
+    "salaryAmount":100,
+    "Currency_code": "EUR"
+}
+
+### update an employee by changing the loginname
+
+PATCH http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C199E7FB
+Content-Type: application/json
+ 
+{
+    "loginName": "SRAVAN",
+    "salaryAmount":100,
+    "Currency_code": "EUR"
+}
+
+### DELETE any employee
+DELETE http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C199E7FB
+
+
+### DELETE an employee whose name starts with 's'
+DELETE http://localhost:4004/odata/v4/EmployeeService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19927FB
